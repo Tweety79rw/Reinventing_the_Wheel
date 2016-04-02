@@ -3,13 +3,16 @@ package reinventing_the_wheel;
 public class Binary_Tree<T extends Comparable<T>> {
 	public class Node<T>{
 		private T value;
-		private Node<T> left;
-		private Node<T> right;
-		private Node<T> parent;
+		int duplicate;
+		int height;
+		Node<T> left;
+		Node<T> right;
+		Node<T> parent;
 		public Node(){
 			this.left = null;
 			this.right = null;
 			this.parent = null;
+			duplicate = 0;
 		}
 		public Node(T val){
 			this();
@@ -50,9 +53,10 @@ public class Binary_Tree<T extends Comparable<T>> {
 		}
 		public T getValue(){return value;}
 		
+		
 	}
 	
-	private Node<T> root;
+	protected Node<T> root;
 	private int count;
 	public Binary_Tree(){
 		this.root = null;
@@ -64,10 +68,12 @@ public class Binary_Tree<T extends Comparable<T>> {
 	public Node<T> insert(T value){
 		return this.root = this.insert(new Node<T>(value),this.root);
 	}
+	protected void addCount(){
+		count++;
+	}
 	private Node<T> insert(Node<T> newNode, Node<T> node){
 		if(node == null){
-			count++;
-			return newNode;
+			node = newNode;
 		}else if(node.value.compareTo(newNode.value)>0){
 			newNode.parent = node;
 			node.left = this.insert(newNode,node.left);
@@ -75,6 +81,7 @@ public class Binary_Tree<T extends Comparable<T>> {
 			newNode.parent = node;
 			node.right = this.insert(newNode,node.right);
 		}
+		node.height = max(height(node.left),height(node.right)) + 1;
 		count++;
 		return node;
 	}
@@ -191,5 +198,10 @@ public class Binary_Tree<T extends Comparable<T>> {
 			return walkLeft(node.left);
 		}
 	}
-
+	protected int max(int lhs,int rhs){
+		return lhs>rhs?lhs:rhs;
+	}
+	protected int height(Node<T> node){
+		return node == null?-1:node.height;
+	}
 }

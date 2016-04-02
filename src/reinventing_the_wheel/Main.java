@@ -5,7 +5,7 @@ import java.util.Random;
 public class Main {
 
 	public static void main(String[] args) {
-	
+		bbtreeTest();
 		
 		
 	}
@@ -43,6 +43,24 @@ public class Main {
 	}
 	static void btreeTest(){
 	 	Binary_Tree<Integer> bTree = new Binary_Tree<Integer>();
+		bTree.insert(50);
+		bTree.insert(15);
+		bTree.insert(15);
+		bTree.insert(25);
+		bTree.insert(5);
+		bTree.insert(75);
+		bTree.insert(80);
+		bTree.insert(65);
+		bTree.insert(19);
+
+		bTree.preorderPrint();
+		System.out.println(bTree.remove(15));
+		bTree.preorderPrint();
+		System.out.println(bTree.insert(1000));
+		bTree.preorderPrint();
+	}
+	static void bbtreeTest(){
+	 	Balanced_Binary_Tree<Integer> bTree = new Balanced_Binary_Tree<Integer>();
 		bTree.insert(50);
 		bTree.insert(15);
 		bTree.insert(15);
