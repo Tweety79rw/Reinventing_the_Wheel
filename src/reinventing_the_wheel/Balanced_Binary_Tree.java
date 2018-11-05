@@ -37,6 +37,7 @@ public class Balanced_Binary_Tree<T extends Comparable<T>> extends Binary_Tree<T
 	}
 	private Node<T> rotateWithLeftChild(Node<T> k2){
 		Node<T> k1 = k2.left;
+		k1.parent = k2.parent;
         k2.left = k1.right;
         if(k2.left != null)
         	k2.left.parent = k2;
@@ -49,6 +50,7 @@ public class Balanced_Binary_Tree<T extends Comparable<T>> extends Binary_Tree<T
 	private Node<T> rotateWithRightChild(Node<T> k1)
     {
 		Node<T> k2 = k1.right;
+		k2.parent = k1.parent;
         k1.right = k2.left;
         if(k1.right != null)
         	k1.right.parent = k1;
